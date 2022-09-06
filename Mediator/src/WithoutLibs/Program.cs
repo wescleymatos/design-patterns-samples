@@ -27,21 +27,21 @@ app.UseHttpsRedirection();
 
 #region Calma!
 
-//app.MapGet("/payments/", (ICommandMediator mediator) =>
-//{
-//    return Results.Ok(mediator.Send<GetAllPaymentsCommand, List<Payment>>(new GetAllPaymentsCommand()));
-//})
-//.WithName("GetAllPayments")
-//.WithOpenApi();
-
-#endregion
-
-app.MapGet("/payments/", (InMemoryDbContext dbContext) =>
+app.MapGet("/payments/", (ICommandMediator mediator) =>
 {
-    return Results.Ok(dbContext.Payments);
+    return Results.Ok(mediator.Send<GetAllPaymentsCommand, List<Payment>>(new GetAllPaymentsCommand()));
 })
 .WithName("GetAllPayments")
 .WithOpenApi();
+
+#endregion
+
+//app.MapGet("/payments/", (InMemoryDbContext dbContext) =>
+//{
+//    return Results.Ok(dbContext.Payments);
+//})
+//.WithName("GetAllPayments")
+//.WithOpenApi();
 
 app.MapGet("/payments/{id}", (Guid id, InMemoryDbContext dbContext) =>
 {

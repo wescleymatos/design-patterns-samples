@@ -26,12 +26,12 @@ app.UseHttpsRedirection();
 
 app.MediatRGet<GetAllPaymentsRequest>("/payments");
 
-app.MapGet("/payments/", async (IMediator mediator) =>
-{
-    return Results.Ok(await mediator.Send(new GetAllPaymentsCommand()));
-})
-.WithName("GetAllPayments")
-.WithOpenApi();
+//app.MapGet("/payments/", async (IMediator mediator) =>
+//{
+//    return Results.Ok(await mediator.Send(new GetAllPaymentsCommand()));
+//})
+//.WithName("GetAllPayments")
+//.WithOpenApi();
 
 app.MapGet("/payments/{id}", async (Guid id, IMediator mediator) =>
 {
